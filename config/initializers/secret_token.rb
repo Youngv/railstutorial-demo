@@ -9,4 +9,18 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Demo::Application.config.secret_key_base = '2bfe96f89f021103bba7cb52b6e05589bcc94f1f2cb331d057a50bd92602f1120cdd85b1e8cef0e4abf52877784b1315d43b845ea88659497d914032fb466a0e'
+
+require 'securerandom'
+
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		token = File.read(token_file).chomp #chomp方法是移除字符串尾部的分离符,例如\n,\r等
+	else
+		token = SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+Demo::Application.config.secret_key_base = secure_token
