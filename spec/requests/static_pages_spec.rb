@@ -9,28 +9,32 @@ describe "Static Pages" do
   end
 
   describe "Home Page" do
+    it_should_behave_like "all Static pages"
     before{visit root_path}
     let(:heading) { 'Demo' }
     let(:page_title) { '' }  
-    it_should_behave_like "all Static pages"
     it{should_not have_title(full_title("| Home"))}
   end
 
   describe "Help Page" do
+    it_should_behave_like "all Static pages"
     before{visit help_path}
     let(:heading) { 'Help' } 
     let(:page_title) { 'Help' }
   end
 
   describe "About Page" do
+    it_should_behave_like "all Static pages"
     before{visit about_path}
     let(:heading) { 'About Us' }
     let(:page_title) { 'About Us' }  
   end
 
   describe "Contact Page" do
+    it_should_behave_like "all Static pages"
     before{visit contact_path}
     let(:page_title) { 'Contact' } 
+    let(:heading) { 'Contact' } 
     it{should have_selector('h1', text:'Contact')}
   end
 
