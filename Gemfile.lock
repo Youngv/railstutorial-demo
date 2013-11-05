@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    bootstrap-sass (2.3.2.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -51,7 +53,7 @@ GEM
     execjs (2.0.2)
     ffi (1.9.3)
     formatador (0.2.4)
-    guard (2.2.2)
+    guard (2.2.3)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -182,6 +184,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 2.3.2.0)
   capybara (= 2.1.0)
   childprocess (= 0.3.6)
   coffee-rails (= 4.0.1)
