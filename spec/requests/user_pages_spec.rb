@@ -11,9 +11,15 @@ describe "User pages" do
     it { should have_title(full_title('Sign up')) }
 	  
 	  describe "with invalid information" do
-		  before {visit signup_path}
 	  	it "should not create a new user" do 
 		    expect {click_button submit}.not_to change(User, :count)
+		  end
+
+			describe "with the form blank" do
+		   	before{click_button submit}
+		    it "should show 5 errors" do
+		      expect(page).to have_selector('div.alert-error', text:"The form contains 5 errors.")
+		    end
 		  end
 	  end
 
@@ -24,8 +30,16 @@ describe "User pages" do
 	      fill_in "Password",     with: "foobar"
 	      fill_in "Confirmation", with: "foobar"
 	    end
+
 	    it "should create a new user" do
 	      expect {click_button submit}.to change(User, :count).by(1)
+	    end
+	    
+	    it "should show the success message" do
+	    	click_button submit
+	    	expect(page).to have_selector('div.alert.alert-success', text:"Welcome to the Demo!")
+	    	expect(page).to have_title(full_title("Example User"))
+	    	expect(page).to have_link('Sign out')
 	    end
 	  end
   end
